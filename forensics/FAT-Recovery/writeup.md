@@ -10,3 +10,8 @@ Start by figuring out how the partitions are setup for this image by running mml
 `mmls recover.dd`
 
 Here we can see that there is only one partition 
+
+`fls recover.dd`
+
+Get inode for file, run
+`icat -r recover.dd #inode`
