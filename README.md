@@ -8,7 +8,7 @@
 - BASH Injection(100)
 - Python Jail(100)
 - Python Jail V2(250)
-- BUffer Overflow String(250)
+- Buffer Overflow String(250)
 - Buffer Overflow RCE(500)
 
 ## Forensics
@@ -18,7 +18,8 @@
 - File Carving Stego Challenge (250)
 - FAT Analysis(250)
 - FAT File Recovery(250)
-- String in Sound(500)
+- Audio Stego (250)
+- Unallocated Space File Carving (500)
 
 ## Web
 -----------
