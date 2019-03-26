@@ -1,7 +1,7 @@
 # AUCTF-2019
 
 # Proposed Challenge Types
-=================================
+
 
 ## PWN
 ----------
