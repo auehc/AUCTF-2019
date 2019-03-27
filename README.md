@@ -55,7 +55,7 @@
 7. DIF Command
 8. Login to next with ssh public key
 9. 
-10. 
+10. Logout Instantly
 
 ## Password Cracking
 -----------------------
