@@ -8,7 +8,7 @@
 - BASH Injection(100)
 - Python Jail(100)
 - Python Jail V2(250)
-- BUffer Overflow String(250)
+- Buffer Overflow String(250)
 - Buffer Overflow RCE(500)
 
 ## Forensics
@@ -18,7 +18,8 @@
 - File Carving Stego Challenge (250)
 - FAT Analysis(250)
 - FAT File Recovery(250)
-- String in Sound(500)
+- Audio Stego (250)
+- Unallocated Space File Carving (500)
 
 ## Web
 -----------
@@ -43,14 +44,18 @@
 - AT&T Assembly(250)
 - NoCCBytes(500)
 
-## BASH
+## BASH [50 each]
 -----------
 1. ssh
 2. hidden file
-3. readable string
-4. multi-layer compression
-5. GREP
-- 6 - 10 TBD
+3. file with readable characters
+4. file with specific parameters (size, readable, not executable etc)
+5. multi-layer compression
+6. GREP
+7. DIF Command
+8. Login to next with ssh public key
+9. 
+10. 
 
 ## Password Cracking
 -----------------------
