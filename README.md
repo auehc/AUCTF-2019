@@ -6,6 +6,7 @@
 ## PWN
 ----------
 - BASH Injection(100)
+- Super Easy: have c/c++ catch seg with signals and then print the flag (100)
 - Python Jail(100)
 - Python Jail V2(250)
 - Buffer Overflow String(250)
