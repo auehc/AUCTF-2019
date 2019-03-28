@@ -29,6 +29,7 @@
 - SQLi(250)
 - Hidden Web(250)
 - Follow Bread Crumbs ala HackTheBox (250)
+
 ## Crypto
 -------------
 - Substitution Cipher(100)
@@ -55,7 +56,7 @@
 6. GREP
 7. DIF Command
 8. Login to next with ssh public key
-9. 
+9. Unique string
 10. Logout Instantly
 
 ## Password Cracking
