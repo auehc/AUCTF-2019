@@ -33,3 +33,7 @@ Now we can decrypte the original message
     plaintext = machine.process_text('AGLARRUZRQGCLHVATCAKXHBLIPFWMRCGHNCYCVUNCSJWAPSNUKBRODCFVBYHKAQ')
     print(plaintext)
 ```
+
+
+Resources:
+https://py-enigma.readthedocs.io/en/latest/guide.html#example-communication-procedure
