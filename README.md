@@ -5,46 +5,45 @@
 
 ## PWN
 ----------
-- BASH Injection(100)
-- Super Easy: have c/c++ catch seg with signals and then print the flag (100)
-- Python Jail(100)
-- Python Jail V2(250)
-- Buffer Overflow String(250)
-- Buffer Overflow RCE(500)
+- [x] BASH Injection(100)
+- [ ] Super Easy: have c/c++ catch seg with signals and then print the flag (100)
+- [ ] Python Jail(100)
+- [ ] Python Jail V2(250)
+- [ ] Buffer Overflow String(250)
+- [ ] Buffer Overflow RCE(500)
 
 ## Forensics
 --------------
-- PDF Redacted String(100)
-- Stego Image(100)
-- File Carving Stego Challenge (250)
-- FAT Analysis(250)
-- FAT File Recovery(250)
-- Audio Stego (250)
-- Unallocated Space File Carving (500)
+- [x] PDF Redacted String(100)
+- [x] Stego Image(100)
+- [x] FAT Analysis(250)
+- [ ] FAT File Recovery(250)
+- [ ] Audio Stego (250)
+- [ ] Unallocated Space File Carving (500)
 
 ## Web
 -----------
-- Comment / Cookies (100)
-- Robots.txt(100)
-- SQLi(250)
-- Hidden Web(250)
-- Follow Bread Crumbs ala HackTheBox (250)
+- [x] Comment / Cookies (100)
+- [x] Robots.txt(100)
+- [-] SQLi(250)
+- [ ] Hidden Web(250)
+- [ ] Follow Bread Crumbs ala HackTheBox (250)
 
 ## Crypto
 -------------
-- Substitution Cipher(100)
-- Morse Code(100)
-- RSA(250)
-- Enigma(250/500)
-- Matrix Cipher(500)
+- [x] Substitution Cipher(100)
+- [x] Morse Code(100)
+- [x] RSA(250)
+- [x] Enigma(250/500)
+- [x] Matrix Cipher(500)
 
 ## Reverse
 --------------
-- INTEL Assembly(100)
-- Hard Coded String(100)
-- Keygen(250)
-- AT&T Assembly(250)
-- NoCCBytes(500)
+- [ ] INTEL Assembly(100)
+- [ ] Hard Coded String(100)
+- [ ] Keygen(250)
+- [ ] AT&T Assembly(250)
+- [ ] NoCCBytes(500)
 
 ## BASH [50 each]
 -----------
