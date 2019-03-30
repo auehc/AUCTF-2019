@@ -18,8 +18,8 @@
 - [x] Stego Image(100)
 - [x] FAT Analysis(250)
 - [ ] FAT File Recovery(250)
-- [ ] Audio Stego (250)
-- [ ] Unallocated Space File Carving (500)
+- [x] Audio Stego (250)
+- [x] Unallocated Space File Carving (500)
 
 ## Web
 -----------
@@ -31,10 +31,10 @@
 
 ## Crypto
 -------------
-- [x] Substitution Cipher(100)
-- [x] Morse Code(100)
+- [x] Substitution Cipher(250)
+- [x] Base 85 (100)
 - [x] RSA(250)
-- [x] Enigma(250/500)
+- [x] Enigma(500)
 - [x] Matrix Cipher(500)
 
 ## Reverse
