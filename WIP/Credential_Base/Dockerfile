@@ -2,7 +2,7 @@ FROM php:7.0-apache
 
 COPY index.html /var/www/html
 COPY AU.png /var/www/html
-COPY source.php /var/www/html
+COPY login.php /var/www/html
 
 EXPOSE 80
 
