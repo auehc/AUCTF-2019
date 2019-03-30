@@ -1,18 +1,17 @@
-#include <stdio.h>
-#include <stdbool.h>
-#include <string.h>
-#include <stdlib.h>
+#include <iostream>
+#include <string>
 
+using namespace std;
 
-int main(int argc, char** argv)                                                                  
+int main()
 {
-    int c = 0;
-    if (argc == 2){
-        int a = atoi(argv[0]);
-        int b = atoi(argv[1]);
-
-        c = a * 2 + b *4;
-    }
-
-    return c;
+	cout << "QUFBQUFBQUFBQUFBQUFBQQ==\n";
+	cout << "Hello! I bet you are looking for the flag..\n";
+	cout << "I really like basic encoding.. can you tell what kind I used??\n";
+	cout << "RkxBR2ZsYWdGTEFHZmxhZ0ZMQUdmbGFn\n";
+	cout << "Q2FuIHlvdSByZWNvZ25pemUgYmFzZTY0Pz8=\n";
+	cout << "RkxBR2ZsYWdGTEFHZmxhZ0ZMQUdmbGFn\n";
+	string eflag = "Z2lnZW17M2E1eV9SM3YzcjUxTjYhfQ==\n";
+	cout << "WW91IGp1c3QgbWlzc2VkIHRoZSBmbGFn\n";
+	return 0;
 }
