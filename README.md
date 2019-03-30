@@ -54,7 +54,7 @@
 5. multi-layer compression
 6. GREP
 7. DIF Command
-8. Login to next with ssh public key
+8. Login to next with setuid binary
 9. Unique string
 10. Logout Instantly
 
