@@ -6,9 +6,10 @@
 
 int main(int argc, char** argv)                                                                  
 {
-    char wait[] = "Wait this isn\'t supposed to be printed..";
-    char flag[] = "aubie{w3lC0m3_T0_R3v3rS1nG}";
+    static char wait[] = "Wait this isn\'t supposed to be printed..";
+    static char flag[] = "aubie{w3lC0m3_T0_R3v3rS1nG}";
 
+    char test[] = "blah blah blah blah jl lol lalm oaj test";
     int c = 0;
     int a = 2400;
     int b = 233;
