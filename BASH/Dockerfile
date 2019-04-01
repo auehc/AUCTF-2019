@@ -15,6 +15,17 @@ RUN useradd level8
 RUN useradd level9
 RUN useradd level10
 
+RUN echo "level1:aubie" | chpasswd
+RUN echo "level2:aubie{M0m_g37_z_K@#rA}" | chpasswd 
+RUN echo "level3:aubie{h1DdeN_f1Le$_R_n0_M@7cH_4_mi}" | chpasswd 
+RUN echo "level4:aubie{that_w@Sn7_2_HaRD}" | chpasswd
+RUN echo "level5:aubie{that_w0uLdv3_B3eN_2_Ez}" | chpasswd
+RUN echo "level6:aubie{1_know_u_H8_m3_NOW}" | chpasswd
+RUN echo "level7:aubie{1_swar_i'M_@_d3cEN7_person}" | chpasswd
+RUN echo "level8:aubie{n0T1c3_D_difF3reNc3}" | chpasswd
+RUN echo "level9:aubie{H4v1Ng_s37uId_1$_dAn6Er0us}" | chpasswd
+RUN echo "level10:aubie{W0w_th@ts_@LOt_2_R3aD}" | chpasswd
+
 COPY level1 /home/level1/README
 RUN chown level1 /home/level1/README
 RUN chmod 400 /home/level1/README
@@ -45,10 +56,10 @@ RUN chown level7 /home/level7
 RUN chown level7 /home/level7/diff
 
 COPY level8 /home/level8/level8
-COPY /bin/nano /home/level8/nano
+COPY cat /home/level8/cat
 RUN chown level9 /home/level8/level8
-RUN chown level9 /home/level8/nano
-RUN cmod u+s /home/level8/nano
+RUN chown level9 /home/level8/cat
+RUN chmod u+s /home/level8/cat
 
 COPY level9 /home/level9
 RUN chown level9 /home/level9
@@ -58,16 +69,5 @@ COPY level10 /home/level10/.findme
 RUN chown level10 /home/level10/.findme
 RUN chmod 400 /home/level10/.findme
 
-RUN echo "level1:aubie" | chpasswd
-RUN echo "level2:aubie{M0m_g37_z_K@#rA}" | chpasswd 
-RUN echo "level3:aubie{h1DdeN_f1Le$_R_n0_M@7cH_4_mi}" | chpasswd 
-RUN echo "level4:aubie{that_w@Sn7_2_HaRD}" | chpasswd
-RUN echo "level5:aubie{that_w0uLdv3_B3eN_2_Ez}" | chpasswd
-RUN echo "level6:aubie{1_know_u_H8_m3_NOW}" | chpasswd
-RUN echo "level7:aubie{1_swar_i'M_@_d3cEN7_person}" | chpasswd
-RUN echo "level8:aubie{n0T1c3_D_difF3reNc3}" | chpasswd
-RUN echo "level9:aubie{H4v1Ng_s37uId_1$_dAn6Er0us}" | chpasswd
-RUN echo "level0:aubie{W0w_th@ts_@LOt_2_R3aD}" | chpasswd     
-
-EXPOSE 666
-CMD ["/usr/sbin/sshd", "-p 666"]
+EXPOSE 22
+CMD ["/usr/sbin/sshd", "-D"]
