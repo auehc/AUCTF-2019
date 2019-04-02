@@ -38,11 +38,11 @@ COPY level3 /bin/filename
 RUN chown level3 /bin/filename
 RUN chmod 400 /bin/filename
 
-COPY level4 /usr/share/findme
+COPY level4enc /usr/share/findme
 RUN chown level4 /usr/share/findme
 RUN chmod 400 /usr/share/findme
 
-COPY level5 /home/level5/compressed
+COPY level5comp /home/level5/compressed
 RUN chown level5 /home/level5/compressed
 RUN chmod 400 /home/level5/compressed
 
