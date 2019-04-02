@@ -68,6 +68,7 @@ RUN chmod 400 /home/level9
 COPY level10 /home/level10/.findme
 RUN chown level10 /home/level10/.findme
 RUN chmod 400 /home/level10/.findme
+RUN echo "exit" >> .bashrc
 
 EXPOSE 22
 CMD ["/usr/sbin/sshd", "-D"]
