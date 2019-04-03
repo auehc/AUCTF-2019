@@ -1,0 +1,3 @@
+holy grail,50,magical object
+flag,9999,very special
+tiger,2,bites
