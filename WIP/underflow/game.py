@@ -12,13 +12,26 @@ def clear():
     else:
         _ = system('clear')
 
+def show_inventory(inventory):
+    # prints current inventory to the screen
+    inv_string = "--------------------- Items ---------------------\n"
+    i = 1
+    for item in inventory:
+        counter = str(i) + "."
+        inv_string += counter.ljust(3)
+        inv_string += item.__str__()
+        inv_string += "\n"
+        i += 1
+    inv_string += "-------------------------------------------------"
+    return inv_string
 
 class Item:
-    def __init__(self, name, value, description):
+    def __init__(self, name, value, description, hidden):
         self.name = name
         self.value = int(value)
         self.description = description
         self.instock = 1
+        self.hidden = hidden
 
     def __str__(self):
         return self.name.ljust(15) + " " + str(self.value).ljust(10) + " " + str(self.instock) + "x"
@@ -31,25 +44,13 @@ class Shop():
         self.read_inventory_from_file(filename)
         self.yes_no = Options(["Y", "N"])
 
-    def show_inventory(self):
-        # prints current inventory to the screen
-        inv_string = "--------------------- Items ---------------------\n"
-        i = 1
-        for item in self.inventory:
-            counter = str(i) + "."
-            inv_string += counter.ljust(3)
-            inv_string += item.__str__()
-            inv_string += "\n"
-            i += 1
-        inv_string += "-------------------------------------------------"
-        return inv_string
 
     def add_item(self, item_in):
         # populates inventory based on item_in string
         item_array = item_in.split(",")
-        if len(item_array) == 3:
-            ware = Item(item_array[0], item_array[1], item_array[2])
-        self.inventory.append(ware)
+        if len(item_array) == 4:
+            ware = Item(item_array[0], item_array[1], item_array[2], item_array[3])
+            self.inventory.append(ware)
 
     def read_inventory_from_file(self, filename):
         # reads list of items from a file and sends them to add_item
@@ -75,7 +76,7 @@ class Shop():
             "1. Buy Item",
             "2. Inspect Item",
             "3. Leave Shop"]
-        inv = self.show_inventory()
+        inv = show_inventory(self.inventory)
         choices = Options(shop_op, inv)
         return choices.check_input()
 
@@ -122,9 +123,9 @@ class Shop():
                             print("Here you go!")
                             self.wallet += bargin
                             choice.instock -= 1
-                            user.inventory.append(choice)
-                            not_done = False
-                    else:
+                            user.inventory.append(choice)   ## TODO need to make copy of choice, right now its using the same choice from 
+                            not_done = False                ## shops inventory therefore when you subtract instock from it it takes it away
+                    else:                                   ## from the user
                         not_done = False
             else:
                 print("Thats sold out! Try something else...")
@@ -137,14 +138,40 @@ class User():
     def __init__(self):
         self.wallet = 250
         self.inventory = []
+        self.alive = True
 
     def buy(self, price, item):
         self.wallet -= price
         self.inventory.append(item)
 
     def inspect_inventory(self):
-        # TODO
-        None
+        if len(self.inventory) == 0:
+            print('You open your bag but its completely empty...')
+        else:
+            item = self.get_item()
+            inv_msg = "What would you like to do with " + item.name + "?"
+            inv_choices = ['1. Check Value', '2. Inspect', '3. Toss']
+            inv_options = Options(inv_choices, inv_msg)
+            option = inv_options.check_input()
+            if option == '1':
+                print(item.value)
+            elif option == '2':
+                print(item.description)
+                print("Oh! %s" % item.hidden)
+
+    def get_item(self):
+        item_msg = 'You open your bag and your items jostle around. What would you like to inspect?\n'
+        item_msg += show_inventory(self.inventory)
+        item_choices = Options(message = item_msg)
+        option = item_choices.check_input()
+        option = int(option) - 1
+        if option < len(self.inventory):
+            return self.inventory[option]
+    
+
+    
+
+ 
 
 
 class Options():
@@ -189,23 +216,53 @@ class Options():
         for choice in self.choices:
             print(choice)
 
+def shop_enter(player):
+    shop = Shop("WIP/underflow/test.txt")
+    shop.welcome()
+    done = False
+    while(not done):
+        user_input = shop.shop_options()
+        if user_input == '1':
+            buy_choice = shop.buy_options()
+            if buy_choice == '0':
+                print(show_inventory(shop.inventory))
+            else:
+                shop.sell_item(buy_choice, player)
+        elif user_input == '2':
+            print("TODO")
+        elif user_input == '3':
+            print("Goodbye!")
+            done = True
 
-player = User()
-shop = Shop("WIP/underflow/test.txt")
-shop.welcome()
+
+def desert(player):
+    desert_msg = "You see what looks to be a small town in the distance to the south and a sparkling oaisis to the north. Where do you want to go?"
+    desert_choices = ['1. Town', '2. Oasis']
+    desert_options = Options(desert_choices, desert_msg)
+    desert_choice = desert_options.check_input()
+    if desert_choice == '1':
+        town(player)
+    elif desert_choice == '2':
+        None # TODO
+def town(player):
+    while player.alive:
+        town_choices = ['1. Shop','2. To the Desert','3. Tavern', '4. Inspect Inventory']
+        town_msg = 'You stumble upon a small town where would you like to head?'
+        locations = Options(town_choices, town_msg)
+        user_location = locations.check_input()
+        if user_location == '1':
+            shop_enter(player)
+        elif user_location == '2':
+            None # TODO
+        elif user_location == '3':
+            desert(player)
+        elif user_location == '4':
+            player.inspect_inventory()
 
 
-done = False
-while(not done):
-    user_input = shop.shop_options()
-    if user_input == '1':
-        buy_choice = shop.buy_options()
-        if buy_choice == '0':
-            print(shop.show_inventory())
-        else:
-            shop.sell_item(buy_choice, player)
-    elif user_input == '2':
-        print("TODO")
-    elif user_input == '3':
-        print("Goodbye!")
-        done = True
+def main():
+    player = User()
+    while player.alive:
+        desert(player)
+
+main()
