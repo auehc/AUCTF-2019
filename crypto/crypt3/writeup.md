@@ -37,3 +37,5 @@ decoded values = 77 64 76 64 66
 
 ## Flag
 matlab
+
+resource: https://www.cs.drexel.edu/~jpopyack/IntroCS/HW/RSAWorksheet.html
