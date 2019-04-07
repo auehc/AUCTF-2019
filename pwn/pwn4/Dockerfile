@@ -6,7 +6,7 @@ RUN groupadd ctf
 
 RUN mkdir /pwn
 
-COPY access_denied.py /pwn/pwn4.py
+COPY jail_v2.py /pwn/pwn4.py
 COPY entry.sh /pwn/entry.sh
 
 RUN useradd -G ctf --home=/pwn pwnuser
