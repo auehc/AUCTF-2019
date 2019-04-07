@@ -1,4 +1,0 @@
-holy grail,50,magical object,you now live forever
-flag,9999,very special,aubie{logical_flaws}
-tiger,2,bites,you've lost 2 fingers
-DL-44,1977,favorite weapon of nerf hearders,you now feel the urge to do some smuggling

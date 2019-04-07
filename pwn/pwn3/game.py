@@ -1,32 +1,8 @@
 from os import system, name
 from random import randint
 from copy import copy
-
-
-def clear():
-
-    # for windows
-    if name == 'nt':
-        _ = system('cls')
-
-    # for mac and linux(here, os.name is 'posix')
-    else:
-        _ = system('clear')
-
-
-def show_inventory(inventory):
-    # prints current inventory to the screen
-    inv_string = "--------------------- Items ---------------------\n"
-    inv_string += "-- Name ---------- Value ---- Stock -------------\n"
-    i = 1
-    for item in inventory:
-        counter = str(i) + "."
-        inv_string += counter.ljust(3)
-        inv_string += item.__str__()
-        inv_string += "\n"
-        i += 1
-    inv_string += "-------------------------------------------------"
-    return inv_string
+from time import sleep
+import sys
 
 
 class Item:
@@ -41,11 +17,11 @@ class Item:
         return self.name.ljust(15) + " " + str(self.value).ljust(10) + " " + str(self.instock) + "x"
 
 
-class Shop():
-    def __init__(self, filename):
+class Shop:
+    def __init__(self):
         self.inventory = []
         self.wallet = 9999
-        self.read_inventory_from_file(filename)
+        self.create_invenotry()
         self.yes_no = Options(["Y", "N"])
 
     def add_item(self, item_in):
@@ -56,12 +32,14 @@ class Shop():
                         item_array[2], item_array[3])
             self.inventory.append(ware)
 
-    def read_inventory_from_file(self, filename):
+    def create_invenotry(self):
         # reads list of items from a file and sends them to add_item
-        file = open(filename, "r")
-        for line in file:
+        string_list = ["holy grail, 50, magical object, you now live forever",
+                       "flag,9999,very special,aubie{logical_flaws}",
+                       "tiger,2,bites,you've lost 2 fingers",
+                       "DL-44, 1977, favorite weapon of nerf hearders, you now feel the urge to do some smuggling"]
+        for line in string_list:
             self.add_item(line)
-        file.close()
 
     def get_item(self, ware):
         # returns item from inventory if ware matches it
@@ -87,13 +65,13 @@ class Shop():
         return location_choice(shop_choices, message, heading_to_shop, location)
 
     def buy_options(self):
-        mes = "Which item would you like to buy? Press 0 to reprint items."
+        mes = "Which item would you like to buy? Press 0 to reprint items.\n"
         print(show_inventory(self.inventory))
         choices = Options(message=mes)
         return choices.check_input()
 
     def yes_no_options(self, name):
-        mes = "Would you like to buy the " + name + "? "
+        mes = "Would you like to buy the " + name + "?\n"
         yes_no = ["1. Yes",
                   "2. No"]
         choices = Options(yes_no, mes)
@@ -109,25 +87,26 @@ class Shop():
                     going_to_buy = self.yes_no_options(choice.name)
                     clear()
                     if going_to_buy == '1':
-                        print("The " + choice.name + " is "
-                              + str(choice.value) + " credits. How much are you willing to pay?")
+                        print_slowly("The " + choice.name + " is "
+                                     + str(choice.value) + " credits. How much are you willing to pay?\n")
                         try:
                             bargin = input()
                             bargin = abs(int(bargin))
                         except ValueError:
-                            print("Please only provide numbers")
+                            print_slowly("Please only provide numbers")
                             continue
 
                         if bargin > user.wallet:
-                            print(
+                            print_slowly(
                                 "What do you think I am stupid? You don't have enough cash for that!")
-                            print("Let's try this again...", end=' ')
+                            print_slowly("Let's try this again...")
                         elif bargin < choice.value:
-                            print("You're gonna need more money than that!")
-                            print("Let's try this again...", end=' ')
+                            print_slowly(
+                                "You're gonna need more money than that!")
+                            print_slowly("Let's try this again...")
                         else:
                             clear()
-                            print("Here you go!")
+                            print_slowly("Here you go!\n")
                             self.wallet += bargin
                             user.buy(bargin, choice)
                             choice.instock -= 1
@@ -135,13 +114,13 @@ class Shop():
                     else:
                         not_done = False
             else:
-                print("Thats sold out! Try something else...")
+                print_slowly("That's sold out! Try something else...\n")
 
         else:
-            print("Invalid Option please pick another")
+            print_slowly("Invalid Option please pick another.\n")
 
 
-class User():
+class User:
     def __init__(self):
         self.wallet = 250
         self.inventory = []
@@ -162,46 +141,57 @@ class User():
 
     def inspect_inventory(self):
         if len(self.inventory) == 0:
-            print('You open your bag but it\'s completely empty...')
+            print_slowly('You open your bag but it\'s completely empty...\n')
         else:
             done = False
             while not done:
                 item = self.get_item()
                 clear()
-                inv_msg = "What would you like to do with " + item.name + "?"
+                if item == None:  # Done
+                    return
+                if item == 0:
+                    print_slowly("Please only use available choices\n")
+                    continue
+                inv_msg = "What would you like to do with " + item.name + "?\n"
                 inv_choices = ['1. Check Value', '2. Inspect',
                                '3. Toss', '4. Leave Inventory']
                 inv_options = Options(inv_choices, inv_msg)
                 option = inv_options.check_input()
                 clear()
                 if option == '1':   # Get Item Value
-                    print(item.value)
+                    print_slowly("The %s is %d credits" %
+                                 (item.name, item.value))
                 elif option == '2':  # Inspect Item
-                    print(item.description)
-                    print("Oh! %s" % item.hidden)
+                    print_slowly(item.description)
+                    print_slowly("Oh! %s" % item.hidden)
                 elif option == '3':  # Drop Item
                     self.drop_item(item)
                 elif option == '4':  # Done
                     done = True
-
                 if len(self.inventory) == 0:
                     break
 
     def drop_item(self, item):
-        print("You drop the %s and the ground opens up to swallow it whole. I hope that item wasn't important or anything..." % item.name)
+        print_slowly(
+            "You drop the %s and the ground opens up to swallow it whole. I hope that item wasn't important or anything..." % item.name)
         self.inventory.remove(item)
 
     def get_item(self):
-        item_msg = 'You open your bag and your items jostle around. What item would you like to select?\n'
-        item_msg += show_inventory(self.inventory)
+        item_msg = 'You open your bag and your items jostle around. What item would you like to select? Press 0 to leave inventory.\n'
+        # item_msg += show_inventory(self.inventory)
         item_choices = Options(message=item_msg)
+        print(show_inventory(self.inventory))
         option = item_choices.check_input()
-        option = int(option) - 1
-        if option < len(self.inventory):
-            return self.inventory[option]
+        if option == '0':
+            return None
+        else:
+            option = int(option) - 1
+            if option < len(self.inventory):
+                return self.inventory[option]
+        return 0
 
     def check_wallet(self):
-        print("You have %d credits" % self.wallet)
+        print_slowly("You have %d credits\n" % self.wallet)
 
 
 class Bank:
@@ -221,7 +211,7 @@ class Bank:
             self.user_account -= value
 
     def check_balance(self):
-        print("You currently have: %d" % self.user_account)
+        print_slowly("You currently have: %d" % self.user_account)
 
     def bank_options(self, heading_to_bank):
         bank_msg = "Welcome to the bank! What would you like to do?\n"
@@ -229,16 +219,16 @@ class Bank:
             "1. Withdraw",
             "2. Deposit",
             "3. Check balance",
-            "4. Leave Bank",
-            "5. Inspect Inventory",
-            "6. Check Wallet"
+            "4. Inspect Inventory",
+            "5. Check Wallet",
+            "6. Leave Bank",
         ]
         location = 'bank'
         return location_choice(bank_choices, bank_msg, heading_to_bank, location)
 
 
-class Options():
-    def __init__(self, choices_in=None, message=''):
+class Options:
+    def __init__(self, choices_in=None, message='\n'):
         self.message = message
         if choices_in == None:
             self.choices = []
@@ -255,107 +245,58 @@ class Options():
 
             choice = choice[0][0]   # get only the beggining of the choice
             self.options.append(choice)
+        if choices_in != None:
+            self.options.append("*")
 
     def check_input(self):
-        print(self.message)
+        print_slowly(self.message)
         self.print_choices()
         while True:
             user_input = input().lower()
+            if user_input == "*":
+                exit_game()
             if self.type == 'number':
                 try:
                     int(user_input)
                     return user_input
                 except ValueError:
-                    print("Please use numbers only\n")
+                    print_slowly("Please use numbers only\n")
                     continue
             elif self.options is not None and user_input not in self.options:
                 clear()
-                print("Please only use available choices\n")
+                print_slowly("Please only use available choices\n")
             else:
                 return user_input
-            print(self.message)
+            print_slowly(self.message)
             self.print_choices()
 
     def print_choices(self):
         for choice in self.choices:
             print(choice)
+        if self.choices != []:
+            print("*. Exit Game")
+            print()
 
 
-def todo():
-    print("I haven't programmed that path yet...")
+def show_inventory(inventory):
+    # prints current inventory to the screen
+    inv_string = "--------------------- Items ---------------------\n"
+    inv_string += "-- Name ---------- Value ---- Stock -------------\n"
+    i = 1
+    for item in inventory:
+        counter = str(i) + "."
+        inv_string += counter.ljust(3)
+        inv_string += item.__str__()
+        inv_string += "\n"
+        i += 1
+    inv_string += "-------------------------------------------------\n"
+    return inv_string
 
-
-def shop_loc(player):
-    shop = Shop("WIP/underflow/test.txt")
-    heading_to_shop = True
-    while(player.alive):
-        user_input = shop.shop_options(heading_to_shop)
-        clear()
-        if user_input == '1':
-            buy_choice = shop.buy_options()
-            clear()
-            if buy_choice == '0':
-                print(show_inventory(shop.inventory))
-            else:
-                shop.sell_item(buy_choice, player)
-        elif user_input == '2':  # Show shop inventory
-            print(show_inventory(shop.inventory))
-        elif user_input == '3':  # Check wallet
-            player.check_wallet()
-        elif user_input == '4':  # Check player inventory
-            player.inspect_inventory()
-        elif user_input == '5':  # Leave shop
-            print("Goodbye!")
-            town_loc()
-        heading_to_shop = False
-
-
-def bank_loc():
-    global bank
-    global player
-    heading_to_bank = True
-    while(player.alive):
-        user_input = bank.bank_options(heading_to_bank)
-        clear()
-        if user_input == "1":
-            withdraw_msg = "How much would you like to withdraw?"
-            withdraw_options = Options(message=withdraw_msg)
-            withdraw = withdraw_options.check_input()
-            bank.withdraw(withdraw, player)
-        elif user_input == "2":
-            deposit_msg = "How much would you like to deposit?"
-            deposit_options = Options(message=deposit_msg)
-            deposit = deposit_options.check_input()
-            bank.deposit(deposit, player)
-        elif user_input == "3":
-            bank.check_balance()
-        elif user_input == "4":
-            print("Goodbye!")
-            town_loc()
-        elif user_input == "5":
-            player.inspect_inventory()
-        elif user_input == "6":
-            player.check_wallet()
-        heading_to_bank = False
-
-
-def oasis_choice(heading_to_oasis):
-    location = 'oasis'
-    message = 'Wow much blue, much green...\n'
-    oasis_choices = ['1. Leave']
-    return location_choice(oasis_choices, message, True, location)
-
-
-def oasis_loc():
-    heading_to_oasis = True
-    while player.alive:
-        oasis_choices = oasis_choice(heading_to_oasis)
-        clear()
-        if oasis_choices == '1':
-            desert_loc()
+################################# Location Functions ################################
 
 
 def desert_loc():
+    # Handles user input for desert location
     global player
     heading_to_desert = True
     while player.alive:
@@ -372,17 +313,18 @@ def desert_loc():
         heading_to_desert = False
 
 
-def desert_choice(heading_to_desert):
-    location = 'desert'
-    desert_msg = "You see what looks to be a small town in the distance to the south and a sparkling oaisis to the north. What do you want to do?\n"
-
-    desert_choices = ['1. Go to the Town', '2. Go to the Oasis',
-                      '3. Inspect Inventory', '4. Check Wallet']
-    return location_choice(desert_choices, desert_msg,
-                           heading_to_desert, location)
+def oasis_loc():
+    # Handles uer input for oasis
+    heading_to_oasis = True
+    while player.alive:
+        oasis_choices = oasis_choice(heading_to_oasis)
+        clear()
+        if oasis_choices == '1':
+            desert_loc()
 
 
 def town_loc():
+    # Handles user input for town
     global player
     heading_to_town = True
     while player.alive:
@@ -401,16 +343,90 @@ def town_loc():
         heading_to_town = False
 
 
+def shop_loc(player):
+    # Handles user input for shop
+    shop = Shop()
+    heading_to_shop = True
+    while(player.alive):
+        user_input = shop.shop_options(heading_to_shop)
+        clear()
+        if user_input == '1':
+            buy_choice = shop.buy_options()
+            clear()
+            if buy_choice == '0':
+                print(show_inventory(shop.inventory))
+            else:
+                shop.sell_item(buy_choice, player)
+        elif user_input == '2':  # Show shop inventory
+            print(show_inventory(shop.inventory))
+        elif user_input == '3':  # Check wallet
+            player.check_wallet()
+        elif user_input == '4':  # Check player inventory
+            player.inspect_inventory()
+        elif user_input == '5':  # Leave shop
+            town_loc()
+        heading_to_shop = False
+
+
+def bank_loc():
+    # Handles user input for bank
+    global bank
+    global player
+    heading_to_bank = True
+    while(player.alive):
+        user_input = bank.bank_options(heading_to_bank)
+        clear()
+        if user_input == "1":
+            withdraw_msg = "How much would you like to withdraw?\n"
+            withdraw_options = Options(message=withdraw_msg)
+            withdraw = withdraw_options.check_input()
+            bank.withdraw(withdraw, player)
+        elif user_input == "2":
+            deposit_msg = "How much would you like to deposit?\n"
+            deposit_options = Options(message=deposit_msg)
+            deposit = deposit_options.check_input()
+            bank.deposit(deposit, player)
+        elif user_input == "3":
+            bank.check_balance()
+        elif user_input == "4":
+            player.inspect_inventory()
+        elif user_input == "5":
+            player.check_wallet()
+        elif user_input == "6":
+            town_loc()
+        heading_to_bank = False
+        clear()
+
+
 def town_choice(heading_to_town):
+    # Choices for town, will call location_choice
     town_choices = ['1. Go to the Shop', '2. Go to the Desert',
                     '3. Go to the Bank', '4. Inspect Inventory', '5. Check Wallet']
-    first_msg = 'You stumble upon a small town what would you like to do?\n'
+    first_msg = 'You stumble upon a small town that contains a shop and a bank what would you like to do?\n'
     location = 'town'
     return location_choice(town_choices, first_msg,
                            heading_to_town, location)
 
 
-def location_choice(choices_list, first_msg, heading_to, location, alt=''):
+def desert_choice(heading_to_desert):
+    location = 'desert'
+    desert_msg = "You see what looks to be a small town in the distance to the south and a sparkling oasis to the north. What do you want to do?\n"
+
+    desert_choices = ['1. Go to the Town', '2. Go to the Oasis',
+                      '3. Inspect Inventory', '4. Check Wallet']
+    return location_choice(desert_choices, desert_msg,
+                           heading_to_desert, location)
+
+
+def oasis_choice(heading_to_oasis):
+    location = 'oasis'
+    message = 'Wow much blue, much green...\n'
+    oasis_choices = ['1. Leave']
+    return location_choice(oasis_choices, message, True, location)
+
+
+def location_choice(choices_list, first_msg, heading_to, location):
+    # Print out choices for passed location, if heading to the location will print out a different message
     if player.locations[location] == 0:
         message = first_msg
         player.locations[location] += 1
@@ -418,14 +434,50 @@ def location_choice(choices_list, first_msg, heading_to, location, alt=''):
         if heading_to:
             message = 'You\'ve made your way back to the %s. What would you like to do?\n' % location
         else:
-            message = alt
+            message = "You are still in the %s. What would you like to do?\n" % location
     choices = Options(choices_list, message)
     return choices.check_input()
 
+#####################################################################################
 
-def main():
-    global player
-    global bank
+
+################################# Utility Functions #################################
+
+
+def print_slowly(string, speed=0.035):
+    # Prints passed string slowly, default speed 1 characters per 0.05 seconds
+    for char in string:
+        sleep(speed)
+        sys.stdout.write(char)
+        sys.stdout.flush()
+    print()
+
+
+def exit_game():
+    print("Goodbye~")
+    sys.exit(1)
+
+
+def clear():
+
+    # for windows
+    if name == 'nt':
+        _ = system('cls')
+
+    # for mac and linux(here, os.name is 'posix')
+    else:
+        _ = system('clear')
+
+
+def todo():
+    print_slowly("I haven't programmed that path yet...")
+
+
+#####################################################################################
+
+
+def boot():
+    # Print boot up messages
     welcome_msg = "  _____                      _      _____ _ \n\
  |  __ \                    | |    / ____| |                \n\
  | |  | | ___  ___  ___ _ __| |_  | (___ | |__   ___  _ __  \n\
@@ -435,9 +487,16 @@ def main():
                                                      | |    \n\
                                                      |_|    "
     print(welcome_msg)
-    print("....")
-    print("....")
-    print("You awaken in a desert...")
+    print("Loading", end='')
+    print_slowly(".....", 0.5)
+    clear()
+    print_slowly("You awaken in a desert...")
+
+
+def main():
+    global player
+    global bank
+    boot()
     while player.alive:
         desert_loc()
 

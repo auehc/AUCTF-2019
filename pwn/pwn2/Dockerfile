@@ -24,6 +24,6 @@ RUN chmod 444 /simple/flag.txt
 RUN chmod 4755 /simple/entry.sh
 RUN chmod 711 /simple/ex
 
-EXPOSE 1337
+EXPOSE 8001
 
 ENTRYPOINT ["/simple/entry.sh"]
