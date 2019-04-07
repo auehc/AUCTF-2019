@@ -31,7 +31,7 @@
 
 ## Crypto
 -------------
-- [ ] Substitution Cipher(100)
+- [x] Substitution Cipher(100)
 - [x] Morse Code(100)
 - [x] RSA(250)
 - [x] Enigma(250/500)
@@ -41,7 +41,7 @@
 --------------
 - [ ] INTEL Assembly(100)
 - [x] Hard Coded String(100)
-- [ ] Keygen(250)
+- [x] Keygen(250)
 - [ ] AT&T Assembly(250)
 - [ ] NoCCBytes(500)
 
