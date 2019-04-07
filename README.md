@@ -8,7 +8,7 @@
 - [x] BASH Injection(100)
 - [x] Super Easy: have c/c++ catch seg with signals and then print the flag (100)
 - [x] Python Jail(100)
-- [ ] Python Jail V2(250)
+- [x] Python Jail V2(250)
 - [x] Logical Error Game (250)
 - [ ] Buffer Overflow String(250)
 - [ ] Buffer Overflow RCE(500)
@@ -26,7 +26,7 @@
 -----------
 - [x] Comment / Cookies (100)
 - [x] Robots.txt(100)
-- [ ] SQLi(250)
+- [x] SQLi(250)
 - [ ] Hidden Web(250)
 - [ ] Follow Bread Crumbs ala HackTheBox (250)
 
