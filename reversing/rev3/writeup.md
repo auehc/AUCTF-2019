@@ -1,5 +1,5 @@
 # Solution
-acdefjej2039
+KeyGenMe
 
 # Flag
-aubie{acdefjej2039}
+aubie{l0V3_m3_s0M3_K3G3N}
