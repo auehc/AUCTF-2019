@@ -1,4 +1,4 @@
-FROM 32bit/ubuntu:16.04
+FROM ubuntu:latest
 
 RUN apt update
 RUN apt install -y socat 
