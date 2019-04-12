@@ -1,12 +1,11 @@
-//this file should never make it to master, just used for my own testing.
 #include <stdio.h>
-#include <iostream>
-#include <fstream>
 #include <string.h>
 
 unsigned char globPass[25] = {'\x5c', '\x70', '\x7a', '\x74', '\x58', '\x65', '\x42', '\x7e', '\x1b', '\x00'};
-unsigned char inputPass[25] = {};
+unsigned char inputPass[25];
+
 bool passCheck();
+unsigned char *check(unsigned char *func);
 
 unsigned char *check(unsigned char *func)
 {
@@ -25,42 +24,35 @@ unsigned char *check(unsigned char *func)
     //prints the first 64 bytes of the function
     for (j = 0; j < 4; j++)
     {
-        //printf("\n%p: ",p);
         //iterate through lines of 16
         for (i = 0; i < 16; i++)
         {
-            //this does nothing except help obfuscate how the key is hidden.
+            // obfuscates xor key
             xorVal += i * j;
             *p++;
-            //printf("%.2x ", *p);
-            //printf("%.2x ","\xcc");
             if ((*p ^ '\x55') == val)
             {
-                //printf("Found a breakpoint\n");
                 return NULL;
             }
             xorVal -= i * j;
         }
     }
+
     //if we get here, we can encrypt the input password since there are no breakpoints.
-    // if we decrypt the input password
-    for (int i = 0; i < sizeof(inputPass); i++)
+    if (func == (unsigned char *)passCheck)
     {
-        if (func == (unsigned char *)passCheck)
+        for (int i = 0; i < sizeof(inputPass); i++)
         {
             if (inputPass[i] != '\x00')
             {
                 inputPass[i] = inputPass[i] ^ xorVal; // 0x11
-            }
-            else
-            {
-                //do nothing
             }
         }
     }
     //Only gets here if no breakpoints
     return func;
 }
+
 bool passCheck()
 {
     if (check((unsigned char *)passCheck) == (unsigned char *)passCheck)
