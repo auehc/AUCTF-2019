@@ -44,7 +44,7 @@
 - [ ] INTEL Assembly (100)
 - [x] Hard Coded String (100)
 - [x] Keygen (250)
-- [ ] AT&T Assembly (250)
+- [ ] ARM Assembly (250)
 - [ ] NoCCBytes (500)
 
 ## BASH [50 each]
