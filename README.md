@@ -62,6 +62,6 @@
 
 ## Password Cracking
 -----------------------
-- [x] 6x Rockyou[x]txt / Dev (100)
+- [x] 6x Rockyoutxt / Dev (100)
 - [x] 4x Mask Attack / Brute Force (250)
 - [x] 2x Custom profile wordlist (500)
