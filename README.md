@@ -26,10 +26,10 @@
 ## Web
 -----------
 - [x] Comment / Cookies (100)
-- [x] Robots.txt (100)
+- [x] HTACCESS (100)
 - [x] SQLi (250)
-- [ ] Hidden Web (250)
-- [ ] Follow Bread Crumbs ala HackTheBox (250)
+- [x] Hidden Web (250)
+- [ ] Follow the Bits (250)
 
 ## Crypto
 -------------
