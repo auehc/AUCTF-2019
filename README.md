@@ -45,7 +45,7 @@
 - [x] Hard Coded String (100)
 - [x] Keygen (250)
 - [ ] ARM Assembly (250)
-- [ ] NoCCBytes (500)
+- [X] No Debugger (500)
 
 ## BASH [50 each]
 -----------
