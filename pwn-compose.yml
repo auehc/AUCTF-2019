@@ -1,0 +1,58 @@
+version: '1'
+
+services:
+    pwn1:
+        build: ./pwn/pwn1
+        restart: always
+        networks:
+            - default
+        ports:
+            - "8000:8000"
+
+    pwn2:
+        build: ./pwn/pwn2
+        restart: always
+        networks:
+            - default
+        ports:
+            - "8001:8001"
+
+    pwn3:
+        build: ./pwn/pwn3
+        restart: always
+        networks:
+            - default
+        ports:
+            - "8002:8002"
+
+    pwn4:
+        build: ./pwn/pwn4
+        restart: always
+        networks:
+            - default
+        ports:
+            - "8003:8003"
+
+    pwn5:
+        build: ./pwn/pwn5
+        restart: always
+        networks:
+            - default
+        ports:
+            - "8004:8004"
+
+    pwn6:
+        build: ./pwn/pwn6
+        restart: always
+        networks:
+            - default
+        ports:
+            - "8005:8005"
+
+    pwn7:
+        build: ./pwn/pwn7 
+        restart: always
+        networks:
+            - default
+        ports:
+            - "8006:8006"
