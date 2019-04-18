@@ -2,5 +2,5 @@
 
 while :
 do
-	su -c "exec socat TCP-LISTEN:8001,reuseaddr,fork EXEC:/simple/pwn2,stderr" - simpleuser;
+	su -c "exec socat TCP-LISTEN:8001,reuseaddr,fork EXEC:/pwn/pwn2,stderr" - pwnuser;
 done

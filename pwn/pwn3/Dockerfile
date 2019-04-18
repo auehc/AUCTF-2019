@@ -2,6 +2,7 @@ FROM ubuntu:latest
 
 RUN apt update
 RUN apt install -y socat 
+RUN apt install -y python3
 RUN groupadd ctf
 
 RUN mkdir /pwn

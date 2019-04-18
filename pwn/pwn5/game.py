@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from os import system, name
 from random import randint
 from copy import copy
@@ -85,10 +87,10 @@ class Shop:
             if choice.instock != 0:
                 while not_done:
                     going_to_buy = self.yes_no_options(choice.name)
-                    clear()
+
                     if going_to_buy == '1':
-                        print_slowly("The " + choice.name + " is "
-                                     + str(choice.value) + " credits. How much are you willing to pay?\n")
+                        print_slowly("The " + choice.name + " is " +
+                                     str(choice.value) + " credits. How much are you willing to pay?\n")
                         try:
                             bargin = input()
                             bargin = abs(int(bargin))
@@ -105,7 +107,7 @@ class Shop:
                                 "You're gonna need more money than that!")
                             print_slowly("Let's try this again...")
                         else:
-                            clear()
+
                             print_slowly("Here you go!\n")
                             self.wallet += bargin
                             user.buy(bargin, choice)
@@ -146,7 +148,7 @@ class User:
             done = False
             while not done:
                 item = self.get_item()
-                clear()
+
                 if item == None:  # Done
                     return
                 if item == 0:
@@ -157,7 +159,7 @@ class User:
                                '3. Toss', '4. Leave Inventory']
                 inv_options = Options(inv_choices, inv_msg)
                 option = inv_options.check_input()
-                clear()
+
                 if option == '1':   # Get Item Value
                     print_slowly("The %s is %d credits" %
                                  (item.name, item.value))
@@ -263,7 +265,7 @@ class Options:
                     print_slowly("Please use numbers only\n")
                     continue
             elif self.options is not None and user_input not in self.options:
-                clear()
+
                 print_slowly("Please only use available choices\n")
             else:
                 return user_input
@@ -301,7 +303,7 @@ def desert_loc():
     heading_to_desert = True
     while player.alive:
         desert_choices = desert_choice(heading_to_desert)
-        clear()
+
         if desert_choices == '1':    # Go to Town
             town_loc()
         elif desert_choices == '2':  # Go to Oasis
@@ -318,7 +320,7 @@ def oasis_loc():
     heading_to_oasis = True
     while player.alive:
         oasis_choices = oasis_choice(heading_to_oasis)
-        clear()
+
         if oasis_choices == '1':
             desert_loc()
 
@@ -329,7 +331,7 @@ def town_loc():
     heading_to_town = True
     while player.alive:
         user_location = town_choice(heading_to_town)
-        clear()
+
         if user_location == '1':    # Go to shop
             shop_loc(player)
         elif user_location == '2':  # Go to desert
@@ -349,10 +351,9 @@ def shop_loc(player):
     heading_to_shop = True
     while(player.alive):
         user_input = shop.shop_options(heading_to_shop)
-        clear()
+
         if user_input == '1':
             buy_choice = shop.buy_options()
-            clear()
             if buy_choice == '0':
                 print(show_inventory(shop.inventory))
             else:
@@ -375,7 +376,7 @@ def bank_loc():
     heading_to_bank = True
     while(player.alive):
         user_input = bank.bank_options(heading_to_bank)
-        clear()
+
         if user_input == "1":
             withdraw_msg = "How much would you like to withdraw?\n"
             withdraw_options = Options(message=withdraw_msg)
@@ -395,7 +396,6 @@ def bank_loc():
         elif user_input == "6":
             town_loc()
         heading_to_bank = False
-        clear()
 
 
 def town_choice(heading_to_town):
@@ -444,7 +444,7 @@ def location_choice(choices_list, first_msg, heading_to, location):
 ################################# Utility Functions #################################
 
 
-def print_slowly(string, speed=0.035):
+def print_slowly(string, speed=0.025):
     # Prints passed string slowly, default speed 1 characters per 0.05 seconds
     for char in string:
         sleep(speed)
@@ -456,17 +456,6 @@ def print_slowly(string, speed=0.035):
 def exit_game():
     print("Goodbye~")
     sys.exit(1)
-
-
-def clear():
-
-    # for windows
-    if name == 'nt':
-        _ = system('cls')
-
-    # for mac and linux(here, os.name is 'posix')
-    else:
-        _ = system('clear')
 
 
 def todo():
@@ -489,7 +478,7 @@ def boot():
     print(welcome_msg)
     print("Loading", end='')
     print_slowly(".....", 0.5)
-    clear()
+
     print_slowly("You awaken in a desert...")
 
 

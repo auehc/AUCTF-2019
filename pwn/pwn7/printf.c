@@ -2,6 +2,7 @@
 
 int main()
 {
+    setvbuf(stdout, _IONBF, 0, 0);
     char flag[] = "nah this isnt it";
     char buffer[100];
     char test[] = "aubie{ch3ck_y0ur_pr1n7_p4r4m5}";

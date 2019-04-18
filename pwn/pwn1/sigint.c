@@ -24,16 +24,13 @@ void sigsegv_handler(int sig)
 int main(int argc, char **argv)
 {
     signal(SIGSEGV, sigsegv_handler);
-    if (argc > 1)
-    {
-        char buf[32];
-        strcpy(buf, argv[1]);
+    char input[8];
+    fgets(input, 8, stdin);
 
-        printf("Thanks! Received: %s\n", buf);
-    }
-    else
-    {
-        printf("This program takes 1 argument.\n");
-    }
+    char buf[4];
+    strcpy(buf, input);
+
+    printf("Thanks! Received: %s\n", buf);
+
     return 0;
 }
