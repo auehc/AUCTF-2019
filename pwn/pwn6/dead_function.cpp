@@ -91,7 +91,6 @@ int main()
 
     char input[20];
     printf("Welcome to Main my address is: %p\n", main);
-    printf("printf is: %p\n", printf);
     fp = 0;
     fgets(input, 20, stdin);
     strcpy(copy, input);
