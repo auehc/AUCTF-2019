@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 int main()
 {
     int a = 100;
@@ -13,5 +11,5 @@ int main()
     a += 23;    // 100 + 23 = 123
     c += a * b; // 620 + (123 * 200)
 
-    printf("%d\n", c);
+    return c;
 }
