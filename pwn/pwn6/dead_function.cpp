@@ -90,7 +90,7 @@ int main()
     char copy[4];
 
     char input[20];
-    printf("Welcome to Main my address is: %p\n", main);
+    printf("Welcome to Main! Just in case you were wondering my address is: %p\n", main);
     fp = 0;
     fgets(input, 20, stdin);
     strcpy(copy, input);
