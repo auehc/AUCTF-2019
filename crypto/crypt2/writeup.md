@@ -1,7 +1,7 @@
-# I forgot the cipher
+# Ted Cruz
 
 ## Solution
-This is a bacon cipher, putting it into a decoder will give you the value
+This is a cipher used by the zodiac killer, decoding it will give you some scrambled letters. If you decode it as a ceasar cipher you will get the plaintext
 
 ## Flag
-aubie{mmmm_baconnnn}
+aubie{itisanaquavelva}

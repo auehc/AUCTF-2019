@@ -34,10 +34,13 @@
 ## Crypto
 -------------
 - [x] Substitution Cipher (100)
+- [x] Bacon Cipher (100)
 - [x] Morse Code (100)
+- [x] Zodiac / Ceasar Cipher (100)
 - [x] RSA (250)
-- [x] Enigma (250/500)
+- [x] Polyibus Square (250)
 - [x] Matrix Cipher (500)
+- [x] Enigma (500)
 
 ## Reverse
 --------------
