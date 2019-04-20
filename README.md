@@ -44,7 +44,7 @@
 - [x] INTEL Assembly (100)
 - [x] Hard Coded String (100)
 - [x] Keygen (250)
-- [ ] ARM Assembly (250)
+- [x] ARM Assembly (250)
 - [X] No Debugger (500)
 
 ## BASH [50 each]
