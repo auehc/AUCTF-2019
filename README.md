@@ -18,12 +18,12 @@
 --------------
 - [x] PDF Redacted String (100)
 - [x] Stego Image (100)
+- [x] Base64 Stego (100)
 - [x] FAT Analysis (250)
 - [x] FAT File Recovery (250)
 - [x] Audio Stego (250)
 - [x] Encrypted Zip File (250)
 - [x] Unallocated Space File Carving (500)
-
 
 ## Web
 -----------
