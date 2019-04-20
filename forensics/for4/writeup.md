@@ -1,20 +1,29 @@
-# FAT Recovery
+# FAT Analysis
 
-It would seem that we have accidently deleted a file containing valuable information. Could you please recover it for us?
+1. What are the partitions listed on this image? (list them in alphabetical order)
+
+2. What are the files listed on the third partition? (list them in alphabetical order)
+
+3. How many deleted files in total are there?
+
+4. How many active files in total are there?
 
 ## Solution
 
-Using Sleuth kit this is a fairly easy process.
+Using a toolset like sleuth kit finding this information is fairly trivial.
+Running `mmls` on the fat image we can see that there are three partitions starting at sectors 2048, 202049, and 402050.
 
-Start by figuring out how the partitions are setup for this image by running mmls
-`mmls recover.dd`
+Running `fsstat fat.dd -o 2048` for the first parititon we can see that the partitions name is SEC PICS
 
-Here we can see that there is only one partition 
+Running `fls fat.dd -o 2048' we can see that there are 7 files, 4 active and 3 being deleted.
 
-`fls recover.dd`
+Running 'fstat fad.dd -o 202049' for the second partition we can see that the name is CLASSICS
 
-Get inode for file, run
-`icat -r recover.dd #inode`
+Running `fls fat.dd -o 202049' we can see that there are 4 files, 1 active and 3 deleted
+
+Running 'fstat fad.dd -o 402050' for the third partition we can see that the name is gifs
+
+Running `fls fat.dd -o 402050' we can see that there are 2 deleted files, with their names being minion.gif and banana.gif
 
 ## Flag
-aubie{d1giT@l_For3ns!cS_IS_nE@T}
+classics, gifs, sec | banana.gif, minion.gif | 8 | 5
