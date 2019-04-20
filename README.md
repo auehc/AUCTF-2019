@@ -29,7 +29,7 @@
 - [x] HTACCESS (100)
 - [x] SQLi (250)
 - [x] Hidden Web (250)
-- [ ] Follow the Bits (250)
+- [x] Follow the Bits (250)
 
 ## Crypto
 -------------
@@ -41,7 +41,7 @@
 
 ## Reverse
 --------------
-- [ ] INTEL Assembly (100)
+- [x] INTEL Assembly (100)
 - [x] Hard Coded String (100)
 - [x] Keygen (250)
 - [ ] ARM Assembly (250)
