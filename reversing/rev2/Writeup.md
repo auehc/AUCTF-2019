@@ -1,4 +1,4 @@
-# 
+# Simple Assembly
 
 ## Solution
 For this you will have to statically analyze the assembly to see how the variables change throughout the program.
