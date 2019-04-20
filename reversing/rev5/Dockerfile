@@ -21,5 +21,5 @@ RUN chmod 4755 /rev/rev5
 RUN chmod 4755 /rev/entry.sh
 RUN chmod 444 /rev/flag.txt
 
-EXPOSE 7004
+EXPOSE 7001
 ENTRYPOINT ["/rev/entry.sh"]

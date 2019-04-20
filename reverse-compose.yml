@@ -1,23 +1,16 @@
 version: '3'
 
 services:
-    rev1:
-        build: ./reversing/rev1
-        networks:
-            - default
-        ports:
-            - "7000:7000"
-
     rev3:
         build: ./reversing/rev3
         networks:
             - default
         ports:
-            - "7002:7002"
+            - "7000:7000"
     rev5:
         build: ./reversing/rev5
         networks:
             - default
         ports:
-            - "7004:7004"
+            - "7001:7001"
 
