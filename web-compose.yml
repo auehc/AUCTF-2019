@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+    really:
+        build: ./Web/Really
+        restart: always
+        networks:
+            - default
+        ports:
+            - "1337:80"
+    hide_and_seek:
+        build: ./Web/Hide_And_Seek
+        restart: always
+        networks:
+            - default
+        ports:
+            - "1474:80"
+    labyrinth:
+        build: ./Web/Labyrinth
+        restart: always
+        networks:
+            - default
+        ports:
+            - "965:80"
+    credential_base:
+        build: ./Web/Credential_Base
+        restart: always
+        networks:
+            - default
+        ports:
+            - "745:80"
+    torture:
+        build: ./Web/Torture
+        restart: always
+        networks:
+            - default
+        ports:
+            - "541:80"
