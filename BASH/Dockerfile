@@ -70,5 +70,5 @@ RUN chown level10 /home/level10/.findme
 RUN chmod 400 /home/level10/.findme
 RUN echo "exit" >> .bashrc
 
-EXPOSE 22
+EXPOSE 2222
 CMD ["/usr/sbin/sshd", "-D"]
