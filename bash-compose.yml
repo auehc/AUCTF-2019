@@ -7,6 +7,6 @@ services:
         networks:
             - default
         ports:
-            - "2222:2222"
+            - "2222:22"
 
   
