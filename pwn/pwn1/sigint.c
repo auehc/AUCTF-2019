@@ -25,12 +25,9 @@ int main(int argc, char **argv)
 {
     signal(SIGSEGV, sigsegv_handler);
     char input[8];
-    fgets(input, 8, stdin);
+    gets(input);
 
-    char buf[4];
-    strcpy(buf, input);
-
-    printf("Thanks! Received: %s\n", buf);
+    printf("Thanks! Received: %s\n", input);
 
     return 0;
 }
