@@ -56,3 +56,11 @@ services:
             - default
         ports:
             - "8006:8006"
+            
+    pwn7:
+        build: ./pwn/pwn8 
+        restart: always
+        networks:
+            - default
+        ports:
+            - "8007:8007"
