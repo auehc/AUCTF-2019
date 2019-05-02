@@ -56,8 +56,8 @@ services:
             - default
         ports:
             - "8006:8006"
-            
-    pwn7:
+
+    pwn8:
         build: ./pwn/pwn8 
         restart: always
         networks:
