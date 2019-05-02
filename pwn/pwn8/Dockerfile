@@ -1,4 +1,4 @@
-FROM debian:latest
+FROM 32bit/ubuntu:latest
 
 RUN apt update
 RUN apt install -y socat
