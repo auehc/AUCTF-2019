@@ -6,7 +6,7 @@ RUN groupadd ctf
 
 RUN mkdir /pwn
 
-COPY entry.sh /entry.sh
+COPY entry.sh /pwn/entry.sh
 COPY pwn8 /pwn/pwn8
 COPY flag.txt /pwn/flag.txt
 
@@ -22,4 +22,4 @@ RUN chmod 444 /pwn/flag.txt
 RUN chmod 4755 /pwn/entry.sh
 
 EXPOSE 8007
-CMD ["./entry.sh"]
+CMD ["/pwn/entry.sh"]
