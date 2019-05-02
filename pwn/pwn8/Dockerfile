@@ -7,7 +7,7 @@ RUN groupadd ctf
 RUN mkdir /pwn
 
 COPY entry.sh /pwn/entry.sh
-COPY pwn8 /pwn/pwn8
+COPY pwn8 /pwn/
 COPY flag.txt /pwn/flag.txt
 
 RUN useradd -G ctf --home=/pwn pwnuser
